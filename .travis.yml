@@ -22,6 +22,10 @@ env:
 # This is needed because the repository has a Makefile, so travis won't invoke
 # "go get" by default.
 install:
+    - ping -c 4 google.com
+    - ping -c 4 blitiri.com.ar || true
+    - curl -m 30 https://blitiri.com.ar/ || true
+    - go mod download
     - go get blitiri.com.ar/go/chasquid
     - go get blitiri.com.ar/go/chasquid/cmd/chasquid-util
     - go get blitiri.com.ar/go/chasquid/cmd/mda-lmtp
